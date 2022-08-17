@@ -1,3 +1,3 @@
 function cliquei(){
-    prompt('Olá');
+    prompt('Hello World!');
 }
