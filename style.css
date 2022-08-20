@@ -18,26 +18,45 @@ h1{
 
 .boardgame{
     height: 426px;
-    width: 972px;
+    width: 100%;
+    max-width: 972px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
 }
+
 
 .card{
     height: 146px;
     width: 117px;
+    position: relative;
+}
+.face{
     background-color: #A7E9AF;
-    margin-bottom: 34px;
-    border-radius: 5px;
-    border: 1px solid #99CEA8;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
+    border: 1px solid #99CEA8;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .7s;
+    transform-style: preserve-3d;
 }
-
+.back {
+    transform: rotateY(180deg);
+}
+.transformback{
+    transform: rotateY(0deg);
+}
+.transformfront{
+    transform: rotateY(-180deg);
+}
 img {
     width: 100px;
     height: auto;
