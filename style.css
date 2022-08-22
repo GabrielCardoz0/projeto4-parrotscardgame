@@ -72,7 +72,8 @@ img {
     .boardgame{
         height: 100%;
     }
-    h1{
-        font-size: 40px;
+    .h1{
+        font-size: 36px;
+        text-align: center;
     }
 }
