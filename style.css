@@ -51,6 +51,10 @@ h1{
 .back {
     transform: rotateY(180deg);
 }
+img {
+    width: 100px;
+    height: auto;
+}
 .transformback{
     transform: rotateY(0deg);
 }
@@ -60,7 +64,20 @@ h1{
 .acertou{
     filter: grayscale(100%);
 }
-img {
-    width: 100px;
-    height: auto;
+
+h2{
+font-family: 'Roboto', sans-serif;
+font-weight: 700;
+font-size: 20px;
+color: #75B79E;
+margin-bottom: 10px;
+}
+
+@media (max-width:335px){
+    .boardgame{
+        height: 100%;
+    }
+    h1{
+        font-size: 40px;
+    }
 }

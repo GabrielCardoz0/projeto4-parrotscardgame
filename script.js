@@ -1,16 +1,11 @@
 let cartascriadas = [];
-
 let i = 0;
-
 let contt = 0;
-
-
 let primeirocard = '';
 let segundocard = '';
-
 let parescertos = 0;
-
 let jogadas = 0;
+let tempo = 0;
 
 const imagens = [
     "./imagens/bobrossparrot.gif",
@@ -22,17 +17,19 @@ const imagens = [
     "./imagens/unicornparrot.gif", 
 ];
 
+
 function comparador() { 
 	return Math.random() - 0.5; 
 }
 imagens.sort(comparador);
+imagens.sort(comparador);
 
 
-let quantidadecartas = prompt("Digite a quantidade de cartas desejadas (mín 4; máx 14):");
+let quantidadecartas = prompt("Digite a quantidade de cartas desejadas (Apenas números pares entre 4 e 14):");
 
 function perguntarquantidade(){
     while(quantidadecartas < 4 || quantidadecartas%2 !== 0 || quantidadecartas > 14){
-        quantidadecartas = prompt("Digite a quantidade de cartas desejadas (mín 4; máx 14):");
+        quantidadecartas = prompt("Digite a quantidade de cartas desejadas (Apenas números pares entre 4 e 14):");
     }
 }
 perguntarquantidade();
@@ -65,6 +62,15 @@ function adicionarcartas(){
 }
 adicionarcartas();
 
+const pararcronometo = setInterval(addTime, 1000);
+
+function addTime(){
+    tempo++;
+    let cronometro = document.querySelector('.cronometro');
+    cronometro.innerHTML = '';
+    cronometro.innerHTML = cronometro.innerHTML+tempo;
+}
+
 
 function virarcarta(carta){
     const backface = carta.querySelector('.back');
@@ -78,8 +84,8 @@ function virarcarta(carta){
         backface.classList.add('transformback');
         frontface.classList.add('transformfront');
         segundocard = carta.querySelector('.back');
-        setTimeout(checardupla, 700);
-        jogadas++;
+        setTimeout(checardupla, 1000);
+        jogadas = jogadas+2;
         console.log(jogadas);
     }
 }
@@ -119,7 +125,8 @@ function checardupla(){
 
 function jogofinalizou(){
     if(parescertos == (quantidadecartas/2) ){
-        alert(`Parabés, você ganhou a partida em ${jogadas} jogadas!`);
+        alert(`Parabés!, você ganhou a partida em ${tempo} segundos e ${jogadas} jogadas.`);
+        clearInterval(pararcronometo);
     }
 }
 

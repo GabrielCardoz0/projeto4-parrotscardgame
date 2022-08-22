@@ -62,6 +62,8 @@
       </div>
     </div>
     
+    <div class="passtime"></div>
+    
 
 
     <script>
@@ -72,6 +74,18 @@
             const frontface = card.querySelector('.front-face');
             frontface.classList.toggle('transformfront');
         }
+        let tempo = 0;
+
+        const idTime = setInterval(addtime, 1000);
+
+          function addtime(){
+            tempo++;
+            let relógio = document.querySelector('.passtime');
+            relógio.innerHTML = '';
+            relógio.innerHTML = relógio.innerHTML+tempo;
+          }
+
+
 
 
 
