@@ -1,8 +1,5 @@
-let cartascriadas = [];
 let i = 0;
 let contt = 0;
-let primeirocard = '';
-let segundocard = '';
 let parescertos = 0;
 let jogadas = 0;
 let tempo = 0;
@@ -16,6 +13,11 @@ const imagens = [
     "./imagens/tripletsparrot.gif",
     "./imagens/unicornparrot.gif", 
 ];
+let cartascriadas = [];
+
+
+let primeirocard = '';
+let segundocard = '';
 
 
 function comparador() { 
