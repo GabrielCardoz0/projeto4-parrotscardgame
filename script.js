@@ -40,11 +40,11 @@ perguntarquantidade();
 function criarcartas(){
     while(i<(quantidadecartas/2)){
         cartascriadas.push(`<li class="card" onclick="virarcarta(this)">
-        <div class="front face"><img src="/imagens/front.png" alt=""></div>
+        <div class="front face"><img src="./imagens/front.png" alt=""></div>
         <div class="back face"><img src="${imagens[i]}" alt=""></div>
         </li> <br>`);
         cartascriadas.push(`<li class="card" onclick="virarcarta(this)">
-        <div class="front face"><img src="/imagens/front.png" alt=""></div>
+        <div class="front face"><img src="./imagens/front.png" alt=""></div>
         <div class="back face"><img src="${imagens[i]}" alt=""></div>
         </li> <br>`);
         i++
