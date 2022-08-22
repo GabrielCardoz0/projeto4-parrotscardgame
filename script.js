@@ -78,10 +78,11 @@ function virarcarta(carta){
     const backface = carta.querySelector('.back');
     const frontface = carta.querySelector('.front');
 
-    if (primeirocard == ''){
+    if (primeirocard === ''){
         backface.classList.add('transformback');
         frontface.classList.add('transformfront');
         primeirocard = carta.querySelector('.back');
+        carta.setAttribute("onclick", "");
     } else if(segundocard ===''){
         backface.classList.add('transformback');
         frontface.classList.add('transformfront');
@@ -89,6 +90,7 @@ function virarcarta(carta){
         setTimeout(checardupla, 1000);
         jogadas = jogadas+2;
         console.log(jogadas);
+        carta.setAttribute("onclick", "");
     }
 }
 
@@ -106,11 +108,13 @@ function checardupla(){
 
     if (primeirocard.innerHTML != segundocard.innerHTML){
         //console.log("são diferentes")
-
         frontcard1.classList.remove('transformfront');
         backcard1.classList.remove('transformback');  
         frontcard2.classList.remove('transformfront');
-        backcard2.classList.remove('transformback');        
+        backcard2.classList.remove('transformback');
+        
+        card1pai.setAttribute("onclick", "virarcarta(this)");
+        card2pai.setAttribute("onclick", "virarcarta(this)"); 
     } else {
        // console.log('São iguais');
         frontcard1.classList.add('acertou');
@@ -118,7 +122,7 @@ function checardupla(){
         frontcard2.classList.add('acertou');
         backcard2.classList.add('acertou');
         parescertos++;
-        setTimeout(jogofinalizou, 700);
+        setTimeout(jogofinalizou, 700); 
     }
     primeirocard = '';
     segundocard = '';
