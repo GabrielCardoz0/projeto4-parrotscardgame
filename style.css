@@ -57,6 +57,9 @@ h1{
 .transformfront{
     transform: rotateY(-180deg);
 }
+.acertou{
+    filter: grayscale(100%);
+}
 img {
     width: 100px;
     height: auto;

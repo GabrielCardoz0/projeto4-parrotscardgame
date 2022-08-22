@@ -1,4 +1,16 @@
+let cartascriadas = [];
 
+let i = 0;
+
+let contt = 0;
+
+
+let primeirocard = '';
+let segundocard = '';
+
+let parescertos = 0;
+
+let jogadas = 0;
 
 const imagens = [
     "./imagens/bobrossparrot.gif",
@@ -9,16 +21,6 @@ const imagens = [
     "./imagens/tripletsparrot.gif",
     "./imagens/unicornparrot.gif", 
 ];
-
-
-let cartascriadas = [];
-
-let i = 0;
-
-let contt = 0;
-
-let jogadas = 0;
-
 
 function comparador() { 
 	return Math.random() - 0.5; 
@@ -36,80 +38,6 @@ function perguntarquantidade(){
 perguntarquantidade();
 
 
-
-
-let primeirocard = '';
-let segundocard = '';
-
-
-
-function checardupla(){
-    console.log('Hello');
-    console.log(primeirocard);
-    console.log(segundocard);
-
-    if (primeirocard != segundocard){
-        console.log("são diferentes")
-    } else {
-        console.log('são iguais');
-    }
-
-    // Primeira ideia de função:
-    //let backprimeirocard = primeirocard.querySelector('.back');
-    //let frontprimeirocard = primeirocard.querySelector('.front');
-
-    //let backsegundocard = segundocard.querySelector('.back');
-    //let frontsegundocard = segundocard.querySelector('.front');
-
-   // if (primeirocard === segundocard){
-   //     console.log('são iguais');
-   // } else {
-    //    backprimeirocard.classList.remove('transformback');
-    //    frontprimeirocard.classList.remove('transformfront');
-
-    //    backsegundocard.classList.remove('transformback');
-    //    frontsegundocard.classList.remove('transformfront');
-   // }
-
-}
-
-
-function virarcarta(carta){
-
-    
-    const backface = carta.querySelector('.back');
-    const frontface = carta.querySelector('.front');
-
-    if (primeirocard === ''){
-        backface.classList.add('transformback');
-        frontface.classList.add('transformfront');
-        primeirocard = carta;
-
-    } else if(segundocard ===''){
-        backface.classList.add('transformback');
-        frontface.classList.add('transformfront');
-        segundocard = carta;
-        checardupla();
-
-
-       // setTimeout(checardupla, 2000);
-    }
-    
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 function criarcartas(){
     while(i<(quantidadecartas/2)){
         cartascriadas.push(`<li class="card" onclick="virarcarta(this)">
@@ -124,7 +52,6 @@ function criarcartas(){
     }
 }
 criarcartas();
-
 cartascriadas.sort(comparador);
 cartascriadas.sort(comparador);
 
@@ -132,16 +59,67 @@ cartascriadas.sort(comparador);
 function adicionarcartas(){
     while(contt<(quantidadecartas)){
         let lista = document.querySelector('.boardgame');
-
         lista.innerHTML = lista.innerHTML+cartascriadas[contt];
-        
         contt++
     }
 }
 adicionarcartas();
 
 
+function virarcarta(carta){
+    const backface = carta.querySelector('.back');
+    const frontface = carta.querySelector('.front');
 
-//Quero adicionar repetidamente itens a um array
-//Quero executar até ter uma quantidade de intens igual a quantidade de cartas
-//cada itereção irá somar +1
+    if (primeirocard == ''){
+        backface.classList.add('transformback');
+        frontface.classList.add('transformfront');
+        primeirocard = carta.querySelector('.back');
+    } else if(segundocard ===''){
+        backface.classList.add('transformback');
+        frontface.classList.add('transformfront');
+        segundocard = carta.querySelector('.back');
+        setTimeout(checardupla, 700);
+        jogadas++;
+        console.log(jogadas);
+    }
+}
+
+
+function checardupla(){
+    //console.log('checar dupla foi ativado');
+    let card1pai = primeirocard.parentNode;
+    let card2pai = segundocard.parentNode;
+
+    let frontcard1 = card1pai.querySelector('.front');
+    let backcard1 = card1pai.querySelector('.back');
+
+    let frontcard2 = card2pai.querySelector('.front');
+    let backcard2 = card2pai.querySelector('.back');
+
+    if (primeirocard.innerHTML != segundocard.innerHTML){
+        //console.log("são diferentes")
+
+        frontcard1.classList.remove('transformfront');
+        backcard1.classList.remove('transformback');  
+        frontcard2.classList.remove('transformfront');
+        backcard2.classList.remove('transformback');        
+    } else {
+       // console.log('São iguais');
+        frontcard1.classList.add('acertou');
+        backcard1.classList.add('acertou');  
+        frontcard2.classList.add('acertou');
+        backcard2.classList.add('acertou');
+        parescertos++;
+        setTimeout(jogofinalizou, 700);
+    }
+    primeirocard = '';
+    segundocard = '';
+}
+
+
+function jogofinalizou(){
+    if(parescertos == (quantidadecartas/2) ){
+        alert(`Parabés, você ganhou a partida em ${jogadas} jogadas!`);
+    }
+}
+
